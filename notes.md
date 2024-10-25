@@ -20,7 +20,8 @@ This, combined with the red wine dataset being much smaller (a natural result of
 
 ---
 
-Sulfites != Sulphates, which is also a feature in the dataset. 
+Sulfites != Sulphates, which is also a feature in the dataset. But do they mean sulfites?
+high residual sugar = high bound SO2 (sugar can continue to ferment, SO2 prevents this)
 
 Naturally, winemakers want their wine to stay as fresh as possible - so the more SO2, the longer their product will last! For health reasons, there are limits placed on how much SO2 per litre is allowed, though this varies quite dramatically between regions.
 
