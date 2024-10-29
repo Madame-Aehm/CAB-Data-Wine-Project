@@ -42,20 +42,24 @@ Sulfur is a reactive chemical, and the sulfur dioxide becomes "bound" when it is
 
 This box plot shows the total sulfur dioxide present in the red and white wine datasets, divided into categories of high, medium and low quality. It is immediately clear that red wine has less SO2, which is an interesting fact given the common misconception to the contrary! Red wine needs less added SO2 as it generally has a higher tannin content and undergoes a fermentation method that gives it a natural protection against the chemical changes SO2 are added to prevent. 
 
-This, combined with the red wine dataset being much smaller (a natural result of the Vinho Verde region in Portugal being much less known for red wine production), is the justification I give for focusing my analysis almost exclusively on white wines from this point onward. 
+This, combined with the red wine dataset being much smaller (a natural result of the Vinho Verde region in Portugal being much less known for red wine production), is the justification I give for focusing my analysis almost exclusively on white wines from this point onward.
+
+We should also compare the impact of free and bound SO2 on the quality of white wines. The value of the bound SO2 can be calculated by simply deducting the free SO2 from the total.
+
+![compare free & bound impact on white wine quality](assets/compare-free-bound-SO2-between-hml-quality-white.png)
+
+It is subtle, but there is a clear pattern to indicate that as more SO2 is bound in the wine, the quality rating lowers. The remaining free SO2 does not appear to have much affect. 
 
 ---
 
 Sulfur dioxide will directly affect other aspects of the wine's chemical composition. If we create a correlation matrix, we can look to see some of these relationships, and discuss how they can influence the quality rating.
 
-![white wine correlation matrix](assets/white-correlation-matrix.png)
-
-Notice I have also used the values of free and total SO2 to calculate the value of **bound sulfur dioxide** for each entry for easy comparison. 
+![white wine correlation matrix](assets/white-correlation-matrix.png) 
 
 The highest correlation of any feature on 'quality' is 'alcohol'. If we then target only features that have some correlation with alcohol, we can focus our assessment on those, and whether SO2 levels have any impact:
 
 ![white wine correlation matrix alcohol focus](assets/white-correlation-matrix-alcohol-focus.png)
-![white wine correlation matrix alcohol focus](assets/white-correlation-matrix-alcohol-extended-focus.png)
+![white wine correlation matrix alcohol correlations focus](assets/white-correlation-matrix-alcohol-extended-focus.png)
 
 - density (-0.78)
 - residual sugar (-0.45)
@@ -64,24 +68,25 @@ The highest correlation of any feature on 'quality' is 'alcohol'. If we then tar
 
 Usually we would hope to have a correlation difference of more than 0.5 to be relevant, but since we're working with such slim pickings I reduced it to 0.4. All of these features (apart from quality) have a negative correlation. I will need to use some of the knowledge I gained from my domain research to explain.
 
-**Density** is negatively correlated because alcohol is physically a less dense substance than water, which makes up the remaining majority of the wine volume. Density can affect mouthfeel, but I struggled to find much information about what else this quality contributes in terms of how the wine is enjoyed and then rated. 
-
-Curiously has a heavy positive correlation with residual sugar. My understanding is that it would be the opposite... A theory for this is that Vino Verde wines simply have a higher starting sugar quantity, and so more residual sugar doesn't necessarily mean less sugar was fermented. The more sugar, the more fermentation, the more alcohol and the lower the density (but also the more residual sugar). 
-
-![density/rs](assets/white-correlation-matrix-density-rs.png)
-
-I terms of its correlation with SO2....
-
-**Residual sugar** is negatively correlated with alcohol because it is the sugar fermenting that creates alcohol! The higher the alcohol content, the more sugar was consumed (meaning there is less left over). Residual sugar obviously contributes to the sweetness of wine. 
-
-
-
 ---
 
+**Density** is negatively correlated because alcohol is physically a less dense substance than water, which makes up the remaining majority of the wine volume. Density can affect mouthfeel, but I struggled to find much information about what else this quality contributes in terms of how the wine is enjoyed and then rated. 
 
-high residual sugar = high bound SO2 (sugar can continue to ferment, SO2 prevents this)
+Curiously, density has a heavy positive correlation with residual sugar. 
 
+![white wine correlation matrix density/rs focus](assets/white-correlation-matrix-density-rs.png)
 
+My understanding is that it would be the opposite... My first theory was that perhaps Vino Verde wines simply have a higher starting sugar quantity, but my domain research on the region immediately contradicts this. Vino Verde wines are harvested under ripe, meaning they tend to have _less_ sugar! But they also tend to be fermented for less time, providing less time for sugar to become alcohol. The addition of SO2 and sulphates prevent further fermentation after bottling, so the sugar content will remain consistent. This is what makes them such dry wines, and keeps their alcohol content fairly low. 
+
+**Residual sugar** is negatively correlated with alcohol because it is the sugar fermenting that creates alcohol! The higher the alcohol content, the more sugar was consumed (meaning there is less left over). We can see how this directly influences the density, and the pattern linked to the quality rating:
+
+![density/rs scatterplot](assets/residual-sugar-density-comparision.png)
+
+Residual sugar obviously contributes to the sweetness of wine. 
+
+In the end, my focus on sulphur dioxide and sulphates didn't lead to any resounding conclusions. It will be added to wines to combat undesirable changes, which can be triggered by the varying levels of other chemicals, but the presence of SO2 itself does not appear too have any independent influence. 
+
+---
 
 References:
 - https://daily.sevenfifty.com/how-sulfites-affect-a-wines-chemistry/
