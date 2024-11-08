@@ -92,3 +92,23 @@ References:
 - https://daily.sevenfifty.com/how-sulfites-affect-a-wines-chemistry/
 - https://grape-to-glass.com/index.php/sulphur-levels-wine/
 - https://www.aromadictionary.com/articles/sulfurdioxide_article.html
+
+---
+
+## Machine Learning
+
+### White
+
+White wines I removed the quality column after assigning each quality label an INT label 0-2 (low-high). I also removed the density column as it seemed to communicate the same information as residual sugar. 
+
+**Logistical Regression**: I was able to marginally improve the result by splitting 0.33, and then by standardizing the data values with the `RobustScaler()`.
+
+**Random Forest Classification**: All attempts to improve the initial score failed to improve on the default model settings with a split of 0.2. 
+
+### Red
+
+White wines I removed the quality column after assigning each quality label an INT label 0-2 (low-high). I also removed the density column as it seemed to communicate the same information as residual sugar. Split for both is 0.333.
+
+**Logistical Regression**: Small improvement by standardizing the data values with the `RobustScaler()`.
+
+**Random Forest Classification**: Small improvement by adding `class_weight='balanced_subsample'`.
