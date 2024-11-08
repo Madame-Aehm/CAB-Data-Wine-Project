@@ -112,3 +112,7 @@ White wines I removed the quality column after assigning each quality label an I
 **Logistical Regression**: Small improvement by standardizing the data values with the `RobustScaler()`.
 
 **Random Forest Classification**: Small improvement by adding `class_weight='balanced_subsample'`.
+
+Ideas for improvement: 
+- Normalise with MinMaxScaler (works for skewed data)
+- Not improvement, but try out Label Encoder for quality label.
